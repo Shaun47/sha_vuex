@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <hello-world></hello-world>
+    <ul>
+      <li v-for="(item,index) in $store.state.list" :key="index">
+          {{item.title}} <button @click="removeItem">Delete</button>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+// import { METHODS } from 'http'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  methods:{
+    removeItem(){
+      this.$store.dispatch("removeItem",this.item);
+    }
   }
 }
 </script>
